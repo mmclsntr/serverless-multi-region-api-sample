@@ -1,0 +1,11 @@
+{
+  "name": "alias-example",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {
+    "serverless-aws-alias": "^1.8.0"
+  },
+  "devDependencies": {
+    "serverless-prune-plugin": "^1.4.3"
+  }
+}

@@ -1,0 +1,6 @@
+bucket = "${TF_STATE_STORAGE_S3_BUCKET}${STAGE}"
+key    = "terraform/terraform.tfstate"
+encrypt = true
+region = "${PRIMARY_REGION}"
+
+dynamodb_table = "${TF_STATE_LOCKING_DYNAMODB}${STAGE}"

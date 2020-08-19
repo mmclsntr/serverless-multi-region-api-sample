@@ -1,0 +1,39 @@
+service: alias-example
+
+provider:
+  name: aws
+  runtime: python3.8
+
+  stage: dev
+  region: ${opt:region,ap-northeast-1}
+
+  stackTags:
+    latestStage: ${self:provider.alias}
+  tags:
+    latestStage: ${self:provider.alias}
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: test
+          method: get
+          private: true
+    environment:
+      API_STAGE: ${self:provider.alias}
+      REGION: ${self:provider.region}
+  healthcheck:
+    handler: handler.hello
+    events:
+      - http:
+          path: healthcheck
+          method: get
+          private: true
+    environment:
+      API_STAGE: ${self:provider.alias}
+      REGION: ${self:provider.region}
+
+plugins:
+  - serverless-aws-alias
+  - serverless-prune-plugin
