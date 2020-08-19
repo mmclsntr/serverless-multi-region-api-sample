@@ -26,6 +26,6 @@ terraform.tfstate
 terraform.tfstate.buckup
 terraform.*.tfvars*
 terraform.*.tfbackend
-!terraform.template.tfvars.json
-!terraform.template.tfbackend
+!terraform.stage.tfvars.template
+!terraform.stage.tfbackend.template
 graph.svg
