@@ -1,11 +1,14 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -e
 
 CMDNAME=`basename $0`
 WORKDIR=`cd $(dirname $0); pwd`
+TOOLDIR=$WORKDIR/tools
 
 SETTING_FILE=$WORKDIR/settings.conf
 RESOURCE_DIR=$WORKDIR/resources/
-GET_API_NON_TARGET_ENV_SCRIPT=$WORKDIR/get_api_non_target_env.sh
+GET_API_NON_TARGET_ENV_SCRIPT=$TOOLDIR/get_api_non_target_env.sh
 
 if [ $# -ne 3 -a $# -ne 4 ]; then
     echo "Usage: $CMDNAME <mode(deploy/remove)> <stage> <profile> [<api_env>]" 1>&2

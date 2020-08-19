@@ -2,8 +2,9 @@
 
 CMDNAME=`basename $0`
 WORKDIR=`cd $(dirname $0); pwd`
+ROOTDIR=$WORKDIR/..
 
-SETTING_FILE=$WORKDIR/settings.conf
+SETTING_FILE=$ROOTDIR/settings.conf
 GET_API_ID_SCRIPT=$WORKDIR/get_api_id.sh
 GET_PARAM_SCRIPT=$WORKDIR/get_parameter.sh
 
@@ -38,7 +39,6 @@ do
 
     echo "[Deployed API stages]"
     aws apigateway get-stages --rest-api-id $REST_API_ID --region $region | jq -r .item[].stageName
-    echo
 
     echo "[Target Env]"
     TARGET_ENV=`aws apigatewayv2 get-api-mappings --domain-name $DOMAIN_NAME \

@@ -1,4 +1,4 @@
-service: alias-example
+service: api-multiregion-example
 
 provider:
   name: aws
@@ -29,7 +29,6 @@ functions:
       - http:
           path: healthcheck
           method: get
-          private: true
     environment:
       API_STAGE: ${self:provider.alias}
       REGION: ${self:provider.region}

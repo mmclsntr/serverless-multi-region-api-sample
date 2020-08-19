@@ -2,9 +2,10 @@
 
 CMDNAME=`basename $0`
 WORKDIR=`cd $(dirname $0); pwd`
+ROOTDIR=$WORKDIR/..
 
-SETTING_FILE=$WORKDIR/settings.conf
-RESOURCE_DIR=$WORKDIR/resources/
+SETTING_FILE=$ROOTDIR/settings.conf
+RESOURCE_DIR=$ROOTDIR/resources/
 
 if [ $# -ne 3 ]; then
     echo "Usage: $CMDNAME <stage> <profile> <region>" 1>&2

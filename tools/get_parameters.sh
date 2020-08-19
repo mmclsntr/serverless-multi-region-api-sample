@@ -2,8 +2,9 @@
 
 CMDNAME=`basename $0`
 WORKDIR=`cd $(dirname $0); pwd`
+ROOTDIR=$WORKDIR/..
 
-SETTING_FILE=$WORKDIR/settings.conf
+SETTING_FILE=$ROOTDIR/settings.conf
 GET_PARAM_SCRIPT=$WORKDIR/get_parameter.sh
 
 if [ $# -ne 2 ]; then

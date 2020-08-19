@@ -2,8 +2,9 @@
 
 CMDNAME=`basename $0`
 WORKDIR=`cd $(dirname $0); pwd`
+ROOTDIR=$WORKDIR/..
 
-SETTING_FILE=$WORKDIR/settings.conf
+SETTING_FILE=$ROOTDIR/settings.conf
 GET_API_ID_SCRIPT=$WORKDIR/get_api_id.sh
 GET_PARAM_SCRIPT=$WORKDIR/get_parameter.sh
 
