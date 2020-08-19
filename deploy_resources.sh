@@ -119,15 +119,15 @@ echo "============================"
 echo "= fmt ="
 terraform fmt
 echo "============================"
-echo "= validate ="
-terraform validate
+echo "= workspace ="
+terraform workspace new ${STAGE} || echo "Select ${STAGE}" && terraform workspace select ${STAGE}
+terraform workspace show
 echo "============================"
 echo "= init ="
 terraform init -reconfigure -backend-config=$TFBACKEND_STAGE_FILE
 echo "============================"
-echo "= workspace ="
-terraform workspace new ${STAGE} || echo "Select ${STAGE}" && terraform workspace select ${STAGE}
-terraform workspace show
+echo "= validate ="
+terraform validate
 echo "============================"
 echo "= $MODE ="
 DEPLOY_CMD="terraform $MODE -var-file=\"$TFVARS_STAGE_FILE\" $TF_VARS $TF_TARGETS"

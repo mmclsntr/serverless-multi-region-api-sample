@@ -1,5 +1,5 @@
 {
-  "name": "alias-example",
+  "name": "serverless-multi-region-api-sample",
   "description": "",
   "version": "0.1.0",
   "dependencies": {
