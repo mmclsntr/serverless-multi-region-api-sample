@@ -1,5 +1,10 @@
+data "aws_caller_identity" "current" {}
+
+output "account_id" {
+  value = data.aws_caller_identity.current.account_id
+}
 resource "aws_s3_bucket" "bucket" {
-  bucket = "clp-mspdev-yamasaki-test-${var.stage}-${var.region}"
+  bucket = "${var.api_name}-${data.aws_caller_identity.current.account_id}-${var.stage}-${var.region}"
   acl    = "private"
 
   versioning {

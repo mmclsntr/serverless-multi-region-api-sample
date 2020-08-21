@@ -8,6 +8,7 @@ TOOLDIR=$WORKDIR/tools
 
 SETTING_FILE=$WORKDIR/settings.conf
 RESOURCE_DIR=$WORKDIR/resources/
+API_DIR=$WORKDIR/api/
 GET_API_NON_TARGET_ENV_SCRIPT=$TOOLDIR/get_api_non_target_env.sh
 
 if [ $# -ne 3 -a $# -ne 4 ]; then
@@ -81,6 +82,7 @@ popd
 
 # Deploy
 echo "Deploy"
+pushd $API_DIR
 for region in $PRIMARY_REGION $SECONDARY_REGION
 do
     echo "---------------"
@@ -90,6 +92,7 @@ do
     eval $DEPLOY_CMD
     echo
 done
+popd
 
 
 echo "Done"

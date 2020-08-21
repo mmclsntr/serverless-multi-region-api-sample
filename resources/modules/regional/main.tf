@@ -16,6 +16,7 @@ module "apigateway" {
 module "s3" {
   source = "./resources/s3"
 
+  api_name = var.api_name
   stage = var.stage
   region = var.region
 }
