@@ -172,6 +172,13 @@ sh deploy_resources.sh plan all {stage} {aws_profile} {api_env}
 sh tools/get_api_stages.sh {stage} {aws_profile}
 ```
 
+## ロールバック
+### API
+- ターゲットを旧環境へ切り戻す
+	- 向先を変えるだけ。
+
+### API以外のAWSリソース
+- コードのバージョンを前リリースのコミットに戻して、再デプロイ
 
 # Notes
 
