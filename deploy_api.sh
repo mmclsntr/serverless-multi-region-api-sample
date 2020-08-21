@@ -83,14 +83,17 @@ popd
 # Deploy
 echo "Deploy"
 pushd $API_DIR
+REGION_TYPE=("primary" "secondary")
+i=0
 for region in $PRIMARY_REGION $SECONDARY_REGION
 do
     echo "---------------"
     echo $region
-    DEPLOY_CMD="sls $MODE --region $region --stage $STAGE --alias $API_ENV $OPTS_LIST"
+    DEPLOY_CMD="sls $MODE --region $region --region_type ${REGION_TYPE[$i]} --stage $STAGE --alias $API_ENV $OPTS_LIST"
     echo $DEPLOY_CMD
     eval $DEPLOY_CMD
     echo
+    let ++i
 done
 popd
 
