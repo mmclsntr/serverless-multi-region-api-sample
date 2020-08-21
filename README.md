@@ -1,9 +1,12 @@
 # Serverless Multi-region API Example
 
-AWS Lambda + API Gatewayでつくるのサーバーレスアーキテクチャのマルチリージョン構成のサンプル
+AWS Lambda + API Gatewayでつくるサーバーレスアーキテクチャのマルチリージョン構成のサンプル
 
 # Requirements
 
+- Terraform 0.13
+- Serverless Framework
+- AWS CLI
 - Node.js
 - NPM
 - Python
@@ -38,6 +41,7 @@ pip install -r requirements.txt
 - Route53でフェールオーバールーティング
 - APIはBlue-Greenデプロイを採用する。
 - DynamoDBはGlobal Tableにする。
+- S3バケットはリージョンごとに独立
 
 
 # Deployment
@@ -281,3 +285,10 @@ sh tools/get_parameters.sh {stage} {aws_profile}
 ```bash
 sh tools/get_parameter.sh {parameter_name} {stage} {aws_profile}
 ```
+
+## リージョンヘルスチェック
+- 各リージョンにヘルスチェック用のLambda `healthcheck` を用意し、Route53ヘルスチェックによって定期的にチェックされる。
+- ヘルスチェック用のLambdaは背後のS3バケットおよびDynamoDBについても、GETリクエストによって死活監視を行う。
+  - リクエストのリトライ回数は `serverless.yml` から環境変数 `AWS_API_RETRY_COUNT` として設定する。
+- ヘルスチェックの頻度や閾値は、都度チューニングする。
+  - [高度な設定 (「エンドポイントを監視」する場合のみ) - Amazon Route 53](https://docs.aws.amazon.com/ja_jp/Route53/latest/DeveloperGuide/health-checks-creating-values.html#health-checks-creating-values-request-interval)
