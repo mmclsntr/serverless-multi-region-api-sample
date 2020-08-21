@@ -149,7 +149,7 @@ sh deploy_resources.sh apply all {stage} {aws_profile}
 
 環境については指定も可能。以下を参照。
 
-## API以外のリソースをデプロイ (アップデート)
+## API以外のAWSリソースをデプロイ (アップデート)
 **※ API以外のインフラリソースの変更を反映する際に実行する**
 
 以下スクリプトを実行。
@@ -159,6 +159,12 @@ sh deploy_resources.sh apply all {stage} {aws_profile} {api_env}
 ```
 
 **{api_env}を指定しない場合、APIのターゲット環境が切り替わってしまうため、現在ターゲットとなっている環境を指定してデプロイする。**
+
+**注意: API以外のリソースについては、Blue-GreenデプロイではなくIn-Placeデプロイとなる。あらかじめ以下でPlanを実行し、変更点を確認する。**
+
+```bash
+sh deploy_resources.sh plan all {stage} {aws_profile} {api_env}
+```
 
 現在ターゲットとなっている環境の情報は以下のスクリプトを実行して取得する。
 
